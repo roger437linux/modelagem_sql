@@ -1,0 +1,50 @@
+Resolução do exercício — Normalização de banco de dados
+
+
+✅ 1. Regras de negócio, tipos de relacionamento e cardinalidades
+
+
+🍀 As cardinalidades descrevem quantas ocorrências de uma entidade podem estar relacionadas a outra.
+
+
+1. Regra de negócio 									- Tipo relacionameno	- 	Cardinalidade
+
+- Cada paciente tem no máximo um convênio. 						-	1:N		-	(0, N) -- (1, 1)
+- Um médico pode ter mais de uma especialidade, e cada especialidade vários médicos.	-	N:N		-	(1, N) -- (1, N)
+- Algumas consultas terminam com uma receita, no máximo uma por consulta.		-	1:1		-	(1, 1) -- (0, 1)
+
+
+
+2. Anomalias presentes na planilha
+
+Atributos não atômicos: especialidades_medico, medicamentos, posologias
+
+
+3. Primeira Forma Normal (1FN)
+
+- Cada célula deve conter um único valor [Separar o dado de cada célula não atômica em uma linha]
+
+Vide: NF1.xlsx
+
+🍀 Para a tabela com atributos desmembrados (atômicos), a chave primária será composta: nº_consulta, especialidades_medico
+
+- nº_consulta sozinho não é suficiente, pois uma consulta pode conter várias especialidades.
+- especialidades_medico sozinho não é suficiente, pois a mesma especialidade aparece em várias consultas.
+
+
+4. Segunda Forma Normal (2FN)
+
+- A 2FN exige que a tabela esteja na 1FN e que cada coluna que não faz parte da chave dependa da chave inteira, não apenas de uma parte dela.
+
+Chave primária composta: nº_consulta, especialidades_medico [Todo atributo não chave deveria depender de ambas as chaves]
+
+
+
+
+
+
+
+
+
+
+
