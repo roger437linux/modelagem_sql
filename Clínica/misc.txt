@@ -14,37 +14,34 @@ Resolução do exercício — Normalização de banco de dados
 - Algumas consultas terminam com uma receita, no máximo uma por consulta.		-	1:1		-	(1, 1) -- (0, 1)
 
 
-
-2. Anomalias presentes na planilha
+2. Primeira forma normal
 
 Atributos não atômicos: especialidades_medico, medicamentos, posologias
 
 
-3. Primeira Forma Normal (1FN)
+-----------------------------------------------------------------------
 
-- Cada célula deve conter um único valor [Separar o dado de cada célula não atômica em uma linha]
+Perguntas para pensar (responda por escrito)
 
-Vide: NF1.xlsx
+1. O **número da carteirinha** fica na tabela do paciente ou na do convênio? Por quê?
 
-🍀 Para a tabela com atributos desmembrados (atômicos), a chave primária será composta: nº_consulta, especialidades_medico
-
-- nº_consulta sozinho não é suficiente, pois uma consulta pode conter várias especialidades.
-- especialidades_medico sozinho não é suficiente, pois a mesma especialidade aparece em várias consultas.
+R: A carteirinha e seu número pertence ao paciente, portando fica na tabela do paciente. 
+   O mesmo conceito se aplica ao cpf que embora tenha sido gerado pela Receita federal pertence a uma pessoa.
 
 
-4. Segunda Forma Normal (2FN)
+2. A consulta guarda **em qual especialidade** o médico atendeu. Isso cria um relacionamento entre quais tabelas?
 
-- A 2FN exige que a tabela esteja na 1FN e que cada coluna que não faz parte da chave dependa da chave inteira, não apenas de uma parte dela.
-
-Chave primária composta: nº_consulta, especialidades_medico [Todo atributo não chave deveria depender de ambas as chaves]
+R: Essa consulta cria um relacionamento entre a tabela medico e a tabela especialidade.
 
 
+3. A receita poderia ficar dentro da tabela de consulta? Quais são os argumentos para separar?
 
+R: A receita até poderia ficar dentro da tabela de consulta pelo relacionamento entre essas serem um para um [1:1], porém,
+como são coisas distintas e a receita poder ou não ser gerada em uma consulta, recomenda-se receita ser uma nova tabela.
 
+4. A **posologia** é do medicamento, da receita ou de outra coisa?
 
-
-
-
-
-
+R: A posologia é descrita na receita e aplicada sobre o medicamento, como o relacionamento entre receita e medicamento é N:N, 
+   pois em uma receita pode estar prescrito muitos remédios, e um medicamento pode ter sido prescrito em muitas receitas,
+   coloca-se a posologia na tabela associativa de receita e medicamento.
 
